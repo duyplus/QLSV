@@ -1,0 +1,99 @@
+<div class="card">
+	<div class="card-header">STUDENT EDITION</div>
+	<div class="card-body pt-3">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group mb-3">
+					<label class="form-label">Chọn trường</label>
+					<select id="truong" class="form-control" ng-model="form.selectTruong">
+						<option value="" selected>Vui lòng chọn</option>
+						<option ng-repeat="item in truongs" value="{{item.matruong}}">
+							{{item.matruong}} - {{item.tentruong}}
+						</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group mb-3">
+					<label class="form-label">Chọn ngành</label>
+					<select id="nganh" class="form-control" ng-model="form.selectNganh">
+						<option value="" selected>Vui lòng chọn</option>
+						<option ng-repeat="item in nganhs" value="{{item.manganh}}">
+							{{item.manganh}} - {{item.tennganh}}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function () {
+				$('#nganh').change(function() {
+					$('#manganh').val($(this).val());
+				});
+				$('#truong').change(function() {
+					$('#matruong').val($(this).val());
+				});
+			});
+		</script>
+	</div>
+	<div class="card-body pt-3">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group mb-3">
+					<label class="form-label">Mã trường</label>
+					<input ng-model="form.graduate.matruong" id="matruong" type="text" class="form-control" disabled>
+				</div>
+				<div class="form-group mb-3">
+					<label class="form-label">Mã ngành</label>
+					<input ng-model="form.graduate.manganh" id="manganh" type="text" class="form-control" disabled>
+				</div>
+				<div class="form-group mb-3">
+					<label class="form-label">Hệ TN</label>
+					<input ng-model="form.graduate.hetn" type="text" class="form-control" required>
+				</div>
+				<div class="form-group mb-3">
+					<label class="form-label">Loại TN</label>
+					<input ng-model="form.graduate.loaitn" type="text" class="form-control" required>
+				</div>
+				<div class="form-group mb-3">
+					<label class="form-label">Ngày TN</label>
+					<input ng-model="form.graduate.ngaytn | date:'yyyy-MM-dd'" type="text" class="form-control" required>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group mb-3">
+					<label class="form-label">Số CMND</label>
+					<input ng-model="form.socmnd" type="text" class="form-control" required>
+				</div>
+				<div class="form-group mb-3">
+					<label class="form-label">Họ và tên</label>
+					<input ng-model="form.hoten" type="password" class="form-control" required>
+				</div>
+				<div class="form-group mb-3">
+					<label class="form-label">Email</label>
+					<input ng-model="form.email" type="text" class="form-control" required>
+				</div>
+				<div class="form-group mb-3">
+					<label class="form-label">Số điện thoại</label>
+					<input ng-model="form.sdt" type="email" class="form-control" required>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card-footer">
+		<div class="text-center">
+			<button ng-click="create()" class="btn btn-primary">
+				<i class="fas fa-plus"></i>&nbsp;&nbsp;Create
+			</button>
+			<button ng-click="update()" class="btn btn-success">
+				<i class="fas fa-pen-to-square"></i>&nbsp;&nbsp;Update
+			</button>
+			<button ng-click="delete(form)" class="btn btn-danger">
+				<i class="fas fa-trash"></i>&nbsp;&nbsp;Delete
+			</button>
+			<button ng-click="reset()" class="btn btn-info">
+				<i class="fas fa-refresh"></i>&nbsp;&nbsp;Reset
+			</button>
+		</div>
+	</div>
+</div>
