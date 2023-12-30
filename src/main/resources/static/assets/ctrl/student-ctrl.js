@@ -32,7 +32,7 @@ app.controller("student-ctrl", function ($scope, $http, $rootScope) {
     //khoi dau
     $scope.initialize();
 
-    //xoa form
+    //lam moi form
     $scope.reset = function () {
         $scope.form = {};
     }
@@ -43,22 +43,21 @@ app.controller("student-ctrl", function ($scope, $http, $rootScope) {
         $(".nav-tabs a:eq(0)").tab('show');
     }
 
-    //them sp moi
+    //them moi
     $scope.create = function () {
         var item = angular.copy($scope.form);
         $http.post(`${url}`, item).then(resp => {
-            resp.data.token = "token";
             $scope.items.push(resp.data);
             $scope.reset();
             $(".nav-tabs a:eq(1)").tab('show');
             sweetalert("Thêm mới thành công!");
         }).catch(error => {
-        	sweetalert("Lỗi thêm mới tài khoản!");
+        	sweetalert("Lỗi thêm mới sinh viên!");
             console.log("Error", error);
         });
     }
 
-    //cap nhat sp
+    //cap nhat
     $scope.update = function () {
         var item = angular.copy($scope.form);
         $http.put(`${url}/${item.id}`, item).then(resp => {
@@ -66,23 +65,23 @@ app.controller("student-ctrl", function ($scope, $http, $rootScope) {
             $scope.items[index] = item;
             $scope.reset();
             $(".nav-tabs a:eq(1)").tab('show');
-            sweetalert("Cập nhật tài khoản thành công!");
+            sweetalert("Cập nhật sinh viên thành công!");
         }).catch(error => {
-        	sweetalert("Lỗi cập nhật tài khoản!");
+        	sweetalert("Lỗi cập nhật sinh viên!");
             console.log("Error", error);
         });
     }
 
-    //xoa sp
+    //xoa
     $scope.delete = function (item) {
         $http.delete(`${url}/${item.id}`).then(resp => {
             var index = $scope.items.findIndex(p => p.id == item.id);
             $scope.items.splice(index, 1);
             $scope.reset();
             $(".nav-tabs a:eq(1)").tab('show');
-            sweetalert("Xóa tài khoản thành công!");
+            sweetalert("Xóa sinh viên thành công!");
         }).catch(error => {
-        	sweetalert("Lỗi xóa tài khoản!");
+        	sweetalert("Lỗi xóa sinh viên!");
             console.log("Error", error);
         });
     }
